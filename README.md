@@ -17,7 +17,12 @@ Commands are not-case sensitive.
 
 # TODO
 
--[ ] Create a `HELP` command.
--[ ] API for creating your own commands.
--[ ] `READ` command for opening files and also writing to them.
--[ ] System arguments for the application.
+- [] Create a `HELP` command.
+- [] API for creating your own commands.
+- [] `READ` command for opening files and also writing to them.
+- [] System arguments for the application.
+
+## Bugs
+
+- [X] Fixed bug where lists are sorted by string as opposed to integer.
+- [X] Fix bug where you cannot update page numbers, only add them.
