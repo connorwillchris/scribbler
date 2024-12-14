@@ -1,11 +1,17 @@
 #!/usr/bin/python3
-
-# COPYRIGHT HERE
 import os
 import re
 
-# lines list, contains each line in the document.
+# list contains each line in the document
 lines = []
+
+def clear_screen():
+	# only for linux or mac systems
+	if os.name == "posix":
+		os.system("clear")
+	# only for windows systems
+	elif os.name == "nt":
+		os.system("cls")
 
 # helper class
 class Line:
@@ -24,40 +30,42 @@ def organize_lines():
 
 def do_command(line: str):
 	line.lower() # lowercase the line, for more consistent matching...
-	#line.strip() # remove whitespace
+	line.strip() # remove whitespace
 
-	# TODO turn this to a match statement!
-	if line == "exit":
-		exit()
+	match line:
+		# exit the program
+		case "exit":
+			exit()
 
-	elif line == "list":
-		#lines.sort(key=Line.organize)
+		case "list":
+			# we have an organize function now...
+			organize_lines()
 
-		# we have an organize function now...
-		organize_lines()
+			for l in lines:
+				print(l.line_num, l.s)
 
-		for l in lines:
-			print(l.line_num, l.s)
+		# write to a file
+		case "write":
+			file_name = input("file name: ")
+			f = open(file_name, "w+")
 
-	elif line == "write":
-		file_name = input("file name: ")
-		f = open(file_name, "w+")
-
-		organize_lines()
-
-		for l in lines:
-			_line = str(l.line_num) + " " + l.s + "\n"
-			f.write(_line)
+			organize_lines()
+			
+			for l in lines:
+				#_line = str(l.line_num) + " " + l.s + "\n"
+				_line = l.s + "\n"
+				f.write(_line)
 
 		# probably don't need a function to tell you the write succeeded.
 		# but can change this later...
-		#print("DONE!!!")
-	
-	elif line == "cls":
-		os.system("clear")
+		case "cls":
+			clear_screen()
+		
+		case _:
+			print(line, "is not a recognized command!")
 
 def main():
-	os.system("clear")
+	clear_screen()
 	while True:
 		line = input()
 
