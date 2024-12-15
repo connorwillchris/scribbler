@@ -1,7 +1,7 @@
 __pycache__
 
 # this is for my use case
-*.book
+*.
 
 # distributions
 build

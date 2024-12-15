@@ -32,6 +32,7 @@ writing to them.
 
 - [X] Fixed bug where lists are sorted by string as opposed to integer.
 - [X] Fix bug where you cannot update page numbers, only add them.
+- [X] Fix bug where a new line produces an error message.
 
 # License stuff
 
